@@ -14,6 +14,7 @@ SELECT CONCAT(first_name,', ', last_name)
 FROM employees WHERE last_name LIKE 'E%' AND last_name LIKE '%E';
 
 # Employees hired in the 90s — 135,214 rows.
+
 SELECT CONCAT(datediff(now(),hire_date), ' Days')
 FROM employees WHERE hire_date BETWEEN 19900101 AND 19991231 AND birth_date LIKE '%12-25' LIMIT 50;
 
@@ -23,4 +24,5 @@ SELECT * FROM employees WHERE birth_date LIKE '%12-25' ORDER BY birth_date ASC, 
 
 # Employees with a 'q' in their last name — 1,873 rows.
 # SELECT * FROM employees WHERE last_name LIKE '%q%';
-SELECT CONCAT(COUNT(last_name),' ',last_name) FROM employees WHERE last_name LIKE '%q%' AND last_name NOT LIKE '%qu%' GROUP BY last_name;
+SELECT COUNT(last_name) Count, em.last_name Last_Name
+FROM employees em WHERE last_name LIKE '%q%' AND em.last_name NOT LIKE '%qu%' GROUP BY Last_Name;
